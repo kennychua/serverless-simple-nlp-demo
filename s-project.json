@@ -1,0 +1,7 @@
+{
+  "name": "serverless-nlp-realestate",
+  "custom": {},
+  "plugins": [
+    "serverless-webpack-plugin"
+  ]
+}

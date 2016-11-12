@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<title>Web Speech API Demo</title>
+<style>
+  * {
+    font-family: Verdana, Arial, sans-serif;
+  }
+  a:link {
+    color:#000;
+    text-decoration: none;
+  }
+  a:visited {
+    color:#000;
+  }
+  a:hover {
+    color:#33F;
+  }
+  .button {
+    background: -webkit-linear-gradient(top,#008dfd 0,#0370ea 100%);
+    border: 1px solid #076bd2;
+    border-radius: 3px;
+    color: #fff;
+    display: none;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.3;
+    padding: 8px 25px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #076bd2;
+    letter-spacing: normal;
+  }
+  .center {
+    padding: 10px;
+    text-align: center;
+    display: none;
+  }
+  .final {
+    color: black;
+    padding-right: 3px; 
+  }
+  .interim {
+    color: gray;
+  }
+  .info {
+    font-size: 14px;
+    text-align: center;
+    color: #777;
+    display: none;
+  }
+  .right {
+    float: right;
+  }
+  .sidebyside {
+    display: inline-block;
+    width: 45%;
+    min-height: 40px;
+    text-align: left;
+    vertical-align: top;
+  }
+  #headline {
+    font-size: 40px;
+    font-weight: 300;
+  }
+  #info {
+    font-size: 20px;
+    text-align: center;
+    color: #777;
+    visibility: hidden;
+  }
+  #results {
+	//display: none;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    min-height: 30px;
+  }
+  #start_button {
+    border: 0;
+    background-color:transparent;
+    padding: 0;
+  }
+	pre {
+	   background-color: ghostwhite;
+	   border: 1px solid silver;
+	   padding: 10px 20px;
+	   margin: 20px; 
+	   }
+	.json-key {
+	   color: brown;
+	   }
+	.json-value {
+	   color: navy;
+	   }
+	.json-string {
+	   color: olive;
+	   }
+
+</style>
+<h1 class="center" id="headline">
+  <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
+    Web Speech API</a> Demonstration</h1>
+<div>
+    <textarea id="txtArea" rows="2" cols="70" placeholder="Enter a sentence to be parsed"></textarea>
+    <button onclick="parseText()">Parse</button>
+
+</div>
+<pre><code id=nlpresult></code></pre>
+
+
+<script>
+var library = {};
+library.json = {
+   replacer: function(match, pIndent, pKey, pVal, pEnd) {
+      var key = '<span class=json-key>';
+      var val = '<span class=json-value>';
+      var str = '<span class=json-string>';
+      var r = pIndent || '';
+      if (pKey)
+         r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+      if (pVal)
+         r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
+      return r + (pEnd || '');
+      },
+   prettyPrint: function(obj) {
+      var jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+      return JSON.stringify(obj, null, 3)
+         .replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+         .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+         .replace(jsonLine, library.json.replacer);
+      }
+};
+
+
+function parseText() {
+    var inputString = $('#txtArea').val();
+    $.getJSON( "https://dmqggxhga9.execute-api.ap-northeast-1.amazonaws.com/dev/nlp-parse?query=" + inputString, function( data ) {
+        $('#nlpresult').html(library.json.prettyPrint(data));
+    });
+}
+</script>

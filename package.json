@@ -1,0 +1,31 @@
+{
+  "name": "serverless-nlp-realestate",
+  "version": "0.0.1",
+  "description": "A Serverless Project and its Serverless Plugin dependencies.",
+  "author": "me",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.1",
+    "moment": "^2.15.1",
+    "serverless-webpack-plugin": "^0.4.5",
+    "webpack": "^1.13.2"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "dependencies": {
+    "bayes": "0.0.6",
+    "bayes-classifier": "0.0.3",
+    "chrono-node": "^1.2.4",
+    "my_word": "0.0.1",
+    "n-readlines": "^0.2.7",
+    "sentiment": "^2.1.0",
+    "serverless-optimizer-plugin": "^2.5.1"
+  }
+}
