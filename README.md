@@ -1,7 +1,10 @@
 # serverless-simple-nlp-demo
 
 This is a project intended to demostrate that Natural Language Parsing is not an impossible task to be left only to Google, Facebook, Amazon and the link. Given a small enough subject area/domain, it is possible to achieve decent parse results.
+
 This demo uses the context of house hunting as an example for some simple Natural Language Processing, running on Amazon's Lambda service.
+
+Accompanying series of blog posts for this code can be found at [link coming soon!]()
 
 Sample query : "show me apartments for sale in Sydney next Saturday"
 
@@ -89,7 +92,6 @@ Sample output :
    ]
 }
 ```
-Accompanying series of blog posts for this code can be found at [link coming soon!]()
 
 ## Live demos
 ### Sample Page with Text Input
