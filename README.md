@@ -109,6 +109,7 @@ This project is meant to be run and deployed on AWS Lambda, using the Serverless
 Tested on serverless v0.5.6 and node v.5.12.0
 Once checked out, run the following commands
 ```
+npm install -g serverless@0.5.6
 npm install
 npm test
 serverless project init
